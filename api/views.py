@@ -17,8 +17,8 @@ class RecruitmentAPI(APIView):
 
     #채용 공고 조회
     def get(self, request):
-        companies = Recruitment.objects.all()
-        serializer = RecruitmentSerializer(companies, many=True)
+        Recruitments = Recruitment.objects.all()
+        serializer = RecruitmentSerializer(Recruitments, many=True)
         return Response(serializer.data)
     
     #채용 공고 생성
@@ -33,8 +33,8 @@ class RecruitmentAPI(APIView):
     
     #채용 공고 수정(업데이트)
     def put(self, request, pk):
-        companies = Recruitment.objects.get(pk=pk)
-        serializer = RecruitmentSerializer(companies, data=request.data)
+        Recruitments = Recruitment.objects.get(pk=pk)
+        serializer = RecruitmentSerializer(Recruitments, data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -44,15 +44,15 @@ class RecruitmentAPI(APIView):
     
     #채용 공고 삭제
     def delete(self, request, pk):
-        recruitment = Recruitment.objects.get(pk=pk)
-        recruitment.delete()
+        recruitments = Recruitment.objects.get(pk=pk)
+        recruitments.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 class UserAPI(APIView):
      #유저 조회
     def get(self, request):
-        companies = User.objects.all()
-        serializer = UserSerializer(companies, many=True)
+        Users = User.objects.all()
+        serializer = UserSerializer(Users, many=True)
         return Response(serializer.data)
     
     #유저 생성
