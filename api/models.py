@@ -15,9 +15,7 @@ class Recruitment(models.Model):
     compensation = models.IntegerField(help_text="채용보상금")
     context = models.TextField(help_text="채용내용")
     tech_stack = models.CharField(help_text="사용기술", max_length=100)
-
-    users = models.ManyToManyField(to='User', related_name='recruitments')
-
+    
     def __str__(self):
         return self.company_name, self.position
     
