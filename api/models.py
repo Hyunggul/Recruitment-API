@@ -15,13 +15,14 @@ class Recruitment(models.Model):
     compensation = models.IntegerField(help_text="채용보상금")
     context = models.TextField(help_text="채용내용")
     tech_stack = models.CharField(help_text="사용기술", max_length=100)
-    
+
     def __str__(self):
-        return self.company_name, self.position
+        return f"{self.company_name} ({self.position})"
     
 class User(models.Model):
-    recruitment_id = models.ForeignKey("Recruitment", on_delete=models.CASCADE)
-    name = models.CharField(help_text="유저명", max_length=50, primary_key=True)
+    recruitment_id = models.ForeignKey("Recruitment", on_delete=models.CASCADE, db_column='recruitment_id')
+    user_id = models.BigAutoField(help_text="유저 id", primary_key=True)
+    name = models.CharField(help_text="유저명", max_length=50)
     
     def __str__(self):
         return self.name
